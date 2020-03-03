@@ -11,12 +11,15 @@ namespace Harman_Video_Master_Dec
     {
         //global declaration of the variable 
         SqlConnection connection;
-        String connection_String = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Video_Rental_Sys;Integrated Security=True";
+       public String connection_String = "Data Source=SIMRAN;Initial Catalog=Video_Rental_Sys;Integrated Security=True";
         SqlCommand command;
         SqlDataReader Datareader;
 
         // implemtneting the method of the interface
         //using the concept of oops define a single method that is used to insert delete and update the record in the table 
+        public int data() {
+            return 1;
+        }
         public void InsDelUpdt(String qry)
         {
 

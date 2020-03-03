@@ -105,7 +105,7 @@
             // dataCustomer
             // 
             this.dataCustomer.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataCustomer.Location = new System.Drawing.Point(112, 12);
+            this.dataCustomer.Location = new System.Drawing.Point(77, 7);
             this.dataCustomer.Name = "dataCustomer";
             this.dataCustomer.Size = new System.Drawing.Size(112, 32);
             this.dataCustomer.TabIndex = 31;
@@ -167,6 +167,7 @@
             this.data.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.data.Size = new System.Drawing.Size(1102, 249);
             this.data.TabIndex = 27;
+            this.data.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.data_CellContentClick);
             this.data.DoubleClick += new System.EventHandler(this.data_DoubleClick);
             // 
             // groupBox3
@@ -557,6 +558,7 @@
             this.Year.Name = "Year";
             this.Year.Size = new System.Drawing.Size(154, 32);
             this.Year.TabIndex = 9;
+            this.Year.TextChanged += new System.EventHandler(this.Year_TextChanged);
             // 
             // Ratting
             // 
@@ -665,6 +667,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

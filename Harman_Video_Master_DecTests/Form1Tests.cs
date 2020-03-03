@@ -15,6 +15,10 @@ namespace Harman_Video_Master_Dec.Tests
         public void Form1Test()
         {
             Form1 obj = new Form1();
+            Assert.IsTrue(true);
+
+
+          
         }
     }
 }

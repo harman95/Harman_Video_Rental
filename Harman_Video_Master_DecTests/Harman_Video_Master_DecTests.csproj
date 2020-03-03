@@ -56,6 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="DatabaseTests.cs" />
     <Compile Include="Form1Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

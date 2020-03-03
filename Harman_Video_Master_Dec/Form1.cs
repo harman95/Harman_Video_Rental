@@ -14,7 +14,7 @@ namespace Harman_Video_Master_Dec
     {
         private int err = 0, RentID = 0, CustID = 0, MovID = 0, Video_Cost = 0;
 
-        // Global object of the Class which is used in the Main Class of the Video Rental System
+        //here global object is created for the main class
         Database data_base = new Database();
 
         Rental rental_obj = new Rental();
@@ -109,7 +109,7 @@ namespace Harman_Video_Master_Dec
 
         private void AddVideo_Click(object sender, EventArgs e)
         {
-            //condition to check the record is filled or not 
+            //if condition for record checking 
             if (chkVideo() == 1)
             {
 
@@ -195,7 +195,7 @@ namespace Harman_Video_Master_Dec
 
         }
 
-        // check emptyness of the rental record
+        // if by mistake any record is not entered in the database system will show error
         public int chkRental()
         {
             if (customerID.Text.ToString().Equals(""))
@@ -391,7 +391,7 @@ namespace Harman_Video_Master_Dec
         public void Video_Cunt()
         {
 
-            // function for viewing most viewed movie
+            // couting the videos for top video to show
             int Count = 0;
             DataTable recrdtbl = new DataTable();
             String query = "select * from Video_Cunt where MovieID=" + Convert.ToInt32(movieID.Text.ToString()) + "";
@@ -532,12 +532,12 @@ namespace Harman_Video_Master_Dec
 
         private void rentalDelete_Click(object sender, EventArgs e)
         {
-            // movie is returned then it can br deleted
+            // when movie is returned it cn be deleted from the datbase
             if (!RentalID.Text.ToString().Equals(""))
             {
                 DataTable recordtbl = new DataTable();
 
-                String query = "select * from Rental_Record where Rental_ID=" + Convert.ToInt32(RentalID.Text.ToString()) + "";
+              /*  String query = "select * from Rental_Record where Rental_ID=" + Convert.ToInt32(RentalID.Text.ToString()) + "";
                 recordtbl = data_base.Srch(query);
 
                 if (recordtbl.Rows[0]["Return_Date"].ToString().Contains("Rent"))
@@ -545,8 +545,8 @@ namespace Harman_Video_Master_Dec
                     MessageBox.Show("Video is Issued on Rent You Can't Delete the Record ");
                 }
                 else
-                {
-                    query = "delete from Rental_Record where Rental_ID=" + Convert.ToInt32(RentalID.Text.ToString()) + "";
+                {*/
+                    String query = "delete from Rental_Record where Rental_ID=" + Convert.ToInt32(RentalID.Text.ToString()) + "";
                     data_base.InsDelUpdt(query);
                     MessageBox.Show("Record Is Deleted");
                     query = "select * from Rental_Record";
@@ -555,7 +555,7 @@ namespace Harman_Video_Master_Dec
                     data.DataSource = recordTbl;
 
 
-                }
+               // }
 
             }
             customerID.Text = "";
@@ -574,7 +574,7 @@ namespace Harman_Video_Master_Dec
         private void data_DoubleClick(object sender, EventArgs e)
         {
 
-            // data grid view data display
+            // all the data according to the click is generated on the grid view object
             try
             {
                 if (MovID == 1)
@@ -592,6 +592,8 @@ namespace Harman_Video_Master_Dec
                     Genre.Text = data.CurrentRow.Cells[7].Value.ToString();
 
                     MovID = 0;
+                    CustID = 0;
+                    RentID = 0;
 
                 }
 
@@ -604,6 +606,9 @@ namespace Harman_Video_Master_Dec
                     MobileNo.Text = data.CurrentRow.Cells[3].Value.ToString();
                     Address.Text = data.CurrentRow.Cells[4].Value.ToString();
                     CustID = 0;
+                    MovID = 0;
+                    CustID = 0;
+                    RentID = 0;
 
                 }
 
@@ -615,10 +620,13 @@ namespace Harman_Video_Master_Dec
                     Issue.Text = data.CurrentRow.Cells[3].Value.ToString();
 
                     RentID = 0;
-
+                    MovID = 0;
+                    CustID = 0;
+                    RentID = 0;
 
                 }
 
+         
             }
             catch (Exception es)
             {
@@ -627,7 +635,46 @@ namespace Harman_Video_Master_Dec
 
         }
 
-        // fuction for shutting the application down
+        
+        private void Year_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                //display the cost of the price of the video after adding the year of the video
+                DateTime dateNow = DateTime.Now;
+
+                int Currentyear = dateNow.Year;
+
+                int diffYear = Currentyear - Convert.ToInt32(Year.Text.ToString());
+                // MessageBox.Show(diff.ToString());
+                if (diffYear >= 5)
+                {
+                    Cost.Text = "2";
+                }
+                if (diffYear >= 0 && diffYear < 5)
+                {
+                    Cost.Text = "5";
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void data_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        //it will colse the rental store application
         private void Exit_Click(object sender, EventArgs e)
         {
            
@@ -640,6 +687,9 @@ namespace Harman_Video_Master_Dec
         {
            
             MovID = 1;
+            
+            CustID = 0;
+            RentID = 0;
             String query = "select * from Video_Record";
             DataTable recordTbl = new DataTable();
             recordTbl = data_base.Srch(query);
@@ -651,6 +701,8 @@ namespace Harman_Video_Master_Dec
         {
            
             CustID = 1;
+            MovID = 0;
+                       RentID = 0;
             String query = "select * from Customer_Record";
             DataTable recordTbl = new DataTable();
             recordTbl = data_base.Srch(query);
@@ -663,9 +715,14 @@ namespace Harman_Video_Master_Dec
         {
             
             RentID = 1;
+            MovID = 0;
+            CustID = 0;
+            
             String query = "select * from Rental_Record";
             DataTable recordTbl = new DataTable();
             recordTbl = data_base.Srch(query);
+
+
             data.DataSource = recordTbl;
         }
     }
